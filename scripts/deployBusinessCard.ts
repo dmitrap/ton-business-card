@@ -1,9 +1,17 @@
 import { toNano } from 'ton-core';
-import { BusinessCard } from '../wrappers/BusinessCard';
+import { BusinessCard, User } from '../wrappers/BusinessCard';
 import { NetworkProvider } from '@ton-community/blueprint';
 
 export async function run(provider: NetworkProvider) {
-    const businessCard = provider.open(await BusinessCard.fromInit());
+
+    const userInfo: User = {
+        $$type: 'User',
+        name: "Vladimir Alefman",
+        profesion: "Web3 Developer",
+        bio: "I like to eat pizza"
+    }
+
+    const businessCard = provider.open(await BusinessCard.fromInit(userInfo));
 
     await businessCard.send(
         provider.sender(),
