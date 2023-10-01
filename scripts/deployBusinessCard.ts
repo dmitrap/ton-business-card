@@ -6,10 +6,10 @@ export async function run(provider: NetworkProvider) {
 
     const userInfo: User = {
         $$type: 'User',
-        name: "Vladimir Alefman",
-        profesion: "Web3 Developer",
-        bio: "I like to eat pizza"
-    }
+        name: 'Dmitry Apatin',
+        profesion: 'junior Web3 developer',
+        bio: '//the owls are not what they seem',
+    };
 
     const businessCard = provider.open(await BusinessCard.fromInit(userInfo));
 

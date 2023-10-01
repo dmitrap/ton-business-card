@@ -11,6 +11,10 @@ message Like{
 
 }
 
+message Dislike{
+
+}
+
 struct User{
     name: String;
     profesion: String;
@@ -41,6 +45,14 @@ contract BusinessCard with Deployable, Ownable {
         let sender: Address = sender();
         if(self.likeManagement.get(sender) != true){
             self.likeCount = self.likeCount + 1;
+            self.likeManagement.set(sender, true);
+        }
+    }
+
+    receive(msg: Dislike){
+        let sender: Address = sender();
+        if(self.likeManagement.get(sender) != true && self.likeCount > 0){
+            self.likeCount = self.likeCount - 1;
             self.likeManagement.set(sender, true);
         }
     }
